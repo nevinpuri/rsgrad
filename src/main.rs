@@ -1,4 +1,5 @@
 pub mod value;
+pub mod visualize;
 use crate::value::Value;
 
 fn main() {
