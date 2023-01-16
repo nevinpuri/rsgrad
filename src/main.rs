@@ -7,5 +7,9 @@ fn main() {
     let c: Value<f32> = Value::new(10.0);
 
     let d = a * b + c;
-    println!("Hello, world!, {}", d);
+
+    for child in d.prev {
+        println!("{}", child.data);
+    }
+    // println!("Hello, world!, {:?}", d.prev);
 }

@@ -1,12 +1,15 @@
 use num::Float;
 use std::{fmt, ops};
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
+
+/// TODO: make default type be f32, not sure why it isn't working right now
 pub struct Value<T = f32>
 where
     T: Float,
 {
-    data: T,
+    pub data: T,
+    pub prev: Vec<Value<T>>
 }
 
 impl<T> Value<T>
@@ -14,7 +17,12 @@ where
     T: Float,
 {
     pub fn new(val: T) -> Self {
-        Value { data: val }
+
+        Value { data: val, prev: Vec::new() }
+    }
+
+    pub fn with_children(val: T, children: Vec<Value<T>>) -> Self {
+        Value { data: val, prev: children }
     }
 }
 
@@ -23,7 +31,7 @@ where
     T: Float + std::fmt::Debug,
 {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{:#?}", self.data)
+        write!(f, "value: {:#?}, children: {:?}", self.data, self.prev)
     }
 }
 
@@ -35,6 +43,7 @@ where
     fn add(self, rhs: T) -> Self::Output {
         Value {
             data: self.data + rhs,
+            prev: vec![self, Value::new(rhs)]
         }
     }
 }
@@ -46,7 +55,8 @@ where
     type Output = Value<T>;
     fn sub(self, rhs: T) -> Self::Output {
         Value {
-            data: self.data - rhs
+            data: self.data - rhs,
+            prev: vec![self, Value::new(rhs)]
         }
     }
 }
@@ -59,6 +69,7 @@ where
     fn mul(self, rhs: T) -> Self::Output {
         Value {
             data: self.data * rhs,
+            prev: vec![self, Value::new(rhs)]
         }
     }
 }
@@ -70,7 +81,8 @@ where
     type Output = Value<T>;
     fn div(self, rhs: T) -> Self::Output {
         Value {
-            data: self.data / rhs
+            data: self.data / rhs,
+            prev: vec![self, Value::new(rhs)]
         }
     }
 }
@@ -83,6 +95,7 @@ where
     fn add(self, rhs: Value<T>) -> Self::Output {
         Value {
             data: self.data + rhs.data,
+            prev: vec![self, rhs]
         }
     }
 }
@@ -94,7 +107,8 @@ where
     type Output = Value<T>;
     fn sub(self, rhs: Value<T>) -> Self::Output {
         Value {
-            data: self.data - rhs.data
+            data: self.data - rhs.data,
+            prev: vec![self, rhs]
         }
     }
 }
@@ -107,6 +121,7 @@ where
     fn mul(self, rhs: Value<T>) -> Self::Output {
         Value {
             data: self.data * rhs.data,
+            prev: vec![self, rhs]
         }
     }
 }
@@ -118,7 +133,8 @@ where
     type Output = Value<T>;
     fn div(self, rhs: Value<T>) -> Self::Output {
         Value {
-            data: self.data / rhs.data
+            data: self.data / rhs.data,
+            prev: vec![self, rhs]
         }
     }
 }
