@@ -10,6 +10,21 @@ use layout::topo::layout::VisualGraph;
 // https://github.com/RazrFalcon/resvg for rendering the graphs
 // or get some window open library which can read svgs and do that on there, also add visualize as a feature
 use layout::core::base::Orientation;
+use num::Float;
+
+use crate::value::Value;
+
+fn trace(root: Value) {
+    let mut nodes: Vec<Value> = Vec::new();
+    let mut edges: Vec<Value> = Vec::new();
+}
+
+fn draw_dot<T>(root: Value<T>)
+where
+    T: Float,
+{
+}
+
 fn simple_graph() {
     let mut vg = VisualGraph::new(Orientation::LeftToRight);
     let sp0 = ShapeKind::new_box("hi");
