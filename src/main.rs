@@ -11,5 +11,7 @@ fn main() {
     for child in d.prev {
         println!("{}", child.data);
     }
+
+    println!("{:?}", d.op);
     // println!("Hello, world!, {:?}", d.prev);
 }
