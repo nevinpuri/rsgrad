@@ -10,7 +10,7 @@ written by following Andrej Karpathy's tutorials.
 
 - cuda support
 - implement algorithms
-- f16 support using the (half)[https://github.com/starkat99/half-rs] crate
+- f16 support using the [half](https://github.com/starkat99/half-rs) crate
 
 ## why?
 
