@@ -4,6 +4,7 @@ description = "an easy to use backpropagation library inspired by micro grad"
 license = "MIT OR Apache-2.0"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/Nevin1901/rsgrad"
 exclude = [
     "notebooks/*",
     "graph.svg",

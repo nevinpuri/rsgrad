@@ -1,5 +1,7 @@
 ## rsgrad
 
+## WORK IN PROGRESS - NOT YET COMPLETED
+
 micrograd but in rust
 
 written by following Andrej Karpathy's tutorials.
