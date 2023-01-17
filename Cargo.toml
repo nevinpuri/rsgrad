@@ -1,6 +1,6 @@
 [package]
 name = "rsgrad"
-description = "an easy to use backpropagation library inspired by micro grad"
+description = "an easy to use backpropagation library inspired by micrograd"
 license = "MIT OR Apache-2.0"
 version = "0.1.1"
 edition = "2021"
