@@ -1,8 +1,7 @@
 use num::Float;
 use std::{fmt, ops};
 
-/// TODO: replace this with standard library operation enum
-
+/// An operation from which a value was created from
 #[derive(Clone, Debug, PartialEq)]
 pub enum Operation {
     Add,
@@ -12,7 +11,7 @@ pub enum Operation {
     Create,
 }
 
-/// TODO: make default type be f32, not sure why it isn't working right now
+/// A value instance
 #[derive(Clone, Debug)]
 pub struct Value<'a, T = f32>
 where
@@ -20,6 +19,8 @@ where
 {
     pub label: &'a str,
     pub data: T,
+    // warning: type T might not be the correct type for grad, maybe just use f16 or f32
+    pub grad: T,
     pub op: Operation,
     pub prev: Vec<Value<'a, T>>,
 }
@@ -32,6 +33,8 @@ where
         Value {
             label: "",
             data: val,
+            // warning: this grad implementation might not be good, maybe just use f32 or f16. Not sure how this stuff works so it will be zero for now
+            grad: num::zero(),
             prev: Vec::new(),
             op: Operation::Create,
         }
@@ -41,6 +44,7 @@ where
         Value {
             label: label,
             data: val,
+            grad: num::zero(),
             prev: Vec::new(),
             op: Operation::Create,
         }
@@ -50,6 +54,7 @@ where
         Value {
             label: "",
             data: val,
+            grad: num::zero(),
             prev: children,
             op: Operation::Create,
         }
@@ -74,6 +79,7 @@ where
         Value {
             label: "",
             data: self.data + rhs,
+            grad: num::zero(),
             prev: vec![self, Value::new(rhs)],
             op: Operation::Add,
         }
@@ -89,6 +95,7 @@ where
         Value {
             label: "",
             data: self.data - rhs,
+            grad: num::zero(),
             prev: vec![self, Value::new(rhs)],
             op: Operation::Sub,
         }
@@ -104,6 +111,7 @@ where
         Value {
             label: "",
             data: self.data * rhs,
+            grad: num::zero(),
             prev: vec![self, Value::new(rhs)],
             op: Operation::Mul,
         }
@@ -119,6 +127,7 @@ where
         Value {
             label: "",
             data: self.data / rhs,
+            grad: num::zero(),
             prev: vec![self, Value::new(rhs)],
             op: Operation::Div,
         }
@@ -134,6 +143,7 @@ where
         Value {
             label: "",
             data: self.data + rhs.data,
+            grad: num::zero(),
             prev: vec![self, rhs],
             op: Operation::Add,
         }
@@ -149,6 +159,7 @@ where
         Value {
             label: "",
             data: self.data - rhs.data,
+            grad: num::zero(),
             prev: vec![self, rhs],
             op: Operation::Sub,
         }
@@ -164,6 +175,7 @@ where
         Value {
             label: "",
             data: self.data * rhs.data,
+            grad: num::zero(),
             prev: vec![self, rhs],
             op: Operation::Mul,
         }
@@ -179,6 +191,7 @@ where
         Value {
             label: "",
             data: self.data / rhs.data,
+            grad: num::zero(),
             prev: vec![self, rhs],
             op: Operation::Div,
         }
