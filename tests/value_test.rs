@@ -10,9 +10,11 @@ fn test_value() {
     e.label = "e";
 
     let d = e + c;
+
     let f = Value::with_label(-2.0, "f");
 
-    let L = d * f;
+    let mut L = d * f;
+    L.label = "l";
 
     println!("{:#?}", L);
     // assert_eq!(d.data, 4.0)
