@@ -3,7 +3,7 @@ use std::{fmt, ops};
 
 /// TODO: replace this with standard library operation enum
 
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub enum Operation {
     Add,
     Sub,
@@ -13,7 +13,7 @@ pub enum Operation {
 }
 
 /// TODO: make default type be f32, not sure why it isn't working right now
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct Value<'a, T = f32>
 where
     T: Float,
