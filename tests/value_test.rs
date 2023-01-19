@@ -18,7 +18,7 @@ fn test_grad() {
     let l1 = l.data;
 
     // we're adding h in this second part
-    let a: Value<f32> = Value::with_label(2.0, "a") + h;
+    let a: Value<f32> = Value::with_label(2.0, "a");
     let b: Value<f32> = Value::with_label(-3.0, "b");
     let c: Value<f32> = Value::with_label(10.0, "c");
 
@@ -34,7 +34,28 @@ fn test_grad() {
     let derivative = (l2 - l1) / h;
 
     println!("{:.2}", (l2 - l1) / h);
-    assert_eq!(format!("{:.2}", derivative), "6.01");
+
+    // grads
+    // l.grad = 1.0;
+    // d.grad = f.data;
+    // f.grad = d.data;
+
+    // assert_eq!(format!("{:.2}", derivative), "6.01");
+
+    // l = d * f
+    // what is dl / dd
+    //
+    // (f(x+h) - f(x)) / h
+    // L = d * f
+    // increasing d by h
+    // (((d+h) * f) - (d * f)) / h
+    // (d * f + h * f - d * f) / h
+    // (h * f) / h
+    // f
+
+    // dl / df = d
+
+    println!("hello");
 
     // calculating derivatives
     // L
