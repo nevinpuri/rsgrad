@@ -58,16 +58,11 @@ fn test_grad() {
     println!("hello");
 
     // calculating derivatives
-    // L
-    // what is the derivative of L with respect to L
 
-    // assert_eq!(d.data, 4.0)
-    // trace_console(d);
+    // + routes derivative
 
-    // for child in d.prev {
-    //     println!("{}", child.data);
-    // }
+    // e = a * b
+    // de / da = b
 
-    // println!("{:?}", d.op);
-    // println!("Hello, world!, {:?}", d.prev);
+    // dL / da = (dL / de) * (de / da)
 }
