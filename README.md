@@ -8,6 +8,7 @@ written by following Andrej Karpathy's tutorials.
 
 ## todo
 
+- python bindings
 - finish backpropagation
 - cuda support
 - implement algorithms
