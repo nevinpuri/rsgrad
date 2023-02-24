@@ -2,6 +2,8 @@
 
 ## WORK IN PROGRESS - NOT YET COMPLETED
 
+rsgrad is a super fast backpropagation library for python and rust.
+
 micrograd but in rust
 
 written by following Andrej Karpathy's tutorials.
